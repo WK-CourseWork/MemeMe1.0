@@ -74,7 +74,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     // MARK: - Image Picker Controller.
     // For when you are finished picking which photo to use as a meme.
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
         if let image = info [UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageView.image = image
             shareButton.isEnabled = true
@@ -93,21 +93,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     // MARK: - Keyboard Will Show.
-    @objc func keyboardWillShow(_ notification:Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         if bottomTextField.isEditing {
             view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
 
     // MARK: Get keyboard height.
-    func getKeyboardHeight(_ notification:Notification) -> CGFloat {
+    func getKeyboardHeight(_ notification: Notification) -> CGFloat {
         let userInfo = notification.userInfo
         let keyboardSize = userInfo![UIResponder.keyboardFrameEndUserInfoKey] as! NSValue // of CGRect
         return keyboardSize.cgRectValue.height
     }
 
     // MARK: Keyboard Will Hide.
-    @objc func keyboardWillHide(_ notification:Notification) {
+    @objc func keyboardWillHide(_ notification: Notification) {
         view.frame.origin.y = 0
     }
 
@@ -132,7 +132,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSAttributedString.Key.strokeColor: UIColor.black,
         NSAttributedString.Key.foregroundColor: UIColor.white,
         NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSAttributedString.Key.strokeWidth:  -3.0
+        NSAttributedString.Key.strokeWidth: -3.0
     ]
 
     // MARK: Subscribe to keyboard notifications.
@@ -166,7 +166,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // MARK: Render view to an image
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
-        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         return memedImage
     }
