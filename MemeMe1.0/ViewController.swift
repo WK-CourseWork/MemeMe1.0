@@ -118,6 +118,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     // MARK: TextField Did Begin Editing.
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        #error("This needs implementing")
+        // if textField's text equals Top or textField's text equals Bottom then set textField's text to ""
     }
 
     // MARK: TextField Should Return.
@@ -150,7 +152,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: - Save the meme.
     func save() {
         // Create the meme.
-    let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: memedImage)
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: memedImage)
+        print(meme)
     }
 
     // MARK: Meme.
@@ -164,10 +167,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // MARK: - Generate the memed image.
     func generateMemedImage() -> UIImage {
         // MARK: Render view to an image
+        #error("This needs fixed")
+        // Hide Toolbars Here
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
+        // Show Toolbars Here
         return memedImage
     }
 
