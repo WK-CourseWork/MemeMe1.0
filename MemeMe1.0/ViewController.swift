@@ -53,10 +53,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         topTextField.delegate = self
         bottomTextField.delegate = self
         shareButton.isEnabled = false
-        // MARK: Hide NavBar.
-        topToolBar.isHidden = true
-        // MARK: Show ToolBar.
-        bottomToolBar.isHidden = false
     }
 
     // MARK: View Will Appear.
@@ -78,10 +74,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let image = info [UIImagePickerController.InfoKey.originalImage] as? UIImage {
             imageView.image = image
             shareButton.isEnabled = true
-            // MARK: Hide ToolBar.
-            bottomToolBar.isHidden = false
-            // MARK: Show NavBar.
-            topToolBar.isHidden = false
         }
         dismiss(animated: true, completion: nil)
     }
@@ -118,8 +110,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     // MARK: TextField Did Begin Editing.
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        #error("This needs implementing")
         // if textField's text equals Top or textField's text equals Bottom then set textField's text to ""
+        if textField.text == "TOP" || textField.text == "BOTTOM" {
+            textField.text = ""
+        }
     }
 
     // MARK: TextField Should Return.
@@ -166,14 +160,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     // MARK: - Generate the memed image.
     func generateMemedImage() -> UIImage {
+
+        // MARK: Hide Toolbars.
+        topToolBar.isHidden = true
+        bottomToolBar.isHidden = true
+
         // MARK: Render view to an image
-        #error("This needs fixed")
-        // Hide Toolbars Here
         UIGraphicsBeginImageContext(self.view.frame.size)
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        // Show Toolbars Here
+
+        // MARK: Show Toolbars.
+        topToolBar.isHidden = false
+        bottomToolBar.isHidden = false
+
         return memedImage
     }
 
