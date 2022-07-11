@@ -8,7 +8,11 @@
 import UIKit
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
-    
+    #error("App Crashes on Share")
+    #error("After selecting image, the bottom tool bar disappears so I can not change the image")
+    #error("Text does not clear on first edit")
+    #error("App does not comply with swift syntax. (See codacy for issues)")
+    #error("Text background is not clear")
 // MARK: - ImageView.
     @IBOutlet weak var imageView: UIImageView!
     var memedImage: UIImage!
