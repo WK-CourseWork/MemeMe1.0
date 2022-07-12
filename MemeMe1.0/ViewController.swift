@@ -183,8 +183,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func share(_ sender: Any) {
         let image = generateMemedImage()
         let controller = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        present(controller, animated: true) {
-            self.save()
+        controller.completionWithItemsHandler = { (activityType, completed, returnedItems, activityError) -> () in
+                    if completed {
+                        self.save()
+                        self.dismiss(animated: true, completion: nil)
+                        
+                    }
         }
+
+        // This allows share to work on iPad
+        if let popOverController = controller.popoverPresentationController {
+            popOverController.barButtonItem = shareButton
+        }
+
+        present(controller, animated: true, completion: nil)
     }
 }
